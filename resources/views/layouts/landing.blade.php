@@ -29,7 +29,7 @@
     <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
     @auth
         @if (auth()->user()->role == 'admin')
-            <a href="{{ route('admin.index') }}" class="btn rounded menu-admin"><i class="fa-solid fa-house"></i></a>
+            <a href="{{ route('dashboard_admin.index') }}" class="btn rounded menu-admin"><i class="fa-solid fa-house"></i></a>
         @endif
     @endauth
     <nav id="sidebar-wrapper">
@@ -40,7 +40,7 @@
             <li class="sidebar-nav-item"><a href="#flo">Flo!</a></li>
             @auth
                 @if (auth()->user()->role == 'admin')
-                    <li class="sidebar-nav-item"><a href="/admin" class="btn btn-info m-3" style="color: #ffffff"><i
+                    <li class="sidebar-nav-item"><a href="{{ route('dashboard_admin.index') }}" class="btn btn-info m-3" style="color: #ffffff"><i
                                 class="fa-solid fa-house"></i> Dashboard Admin</a></li>
                 @endif
                 <li class="sidebar-nav-item">

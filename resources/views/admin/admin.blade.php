@@ -25,7 +25,9 @@ Dashboard Admin
                          !</h3>
                     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</button>
                     @include('admin.layouts.modalTambah')
-        <table class="table table-bordered">
+
+
+        <table id="tabel-data" class="display table table-bordered">
             <thead>
               <tr>
                 <th scope="col">GAMBAR</th>
@@ -59,18 +61,6 @@ Dashboard Admin
               @endforelse
             </tbody>
           </table>
-          {{ $posts->links() }}
-
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-
-              <li class="page-item"><a class="page-link" href="#"></a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
 
                 </div>
             </div>

@@ -17,6 +17,9 @@
     <!-- Style CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+        <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -128,6 +131,66 @@
         }
     </script>
 
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script>
+    $(function() {
+        $("#tabel-data").DataTable({ // inisiasi datatables pada tabel dengan id tabel-data
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": true,
+            buttons: [
+                'pageLength',
+                  "colvis", // column visibility
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: ':not(.no-export)'
+                    },
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '10pt')
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    messageTop: '<hr> <h3><u>Data Iventarisasi</u></h3>'
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':not(.no-export)'
+                    }
+                },
+                {
+                    extend: "copy",
+                    exportOptions: {
+                        columns: ':not(.no-export)'
+                    }
+                },
+
+            ],
+            lengthMenu: [
+                [5, 10, 20, -1],
+                ['5 rows', '10 rows', '20 rows', 'Show all'] // opsional, paginate dari datatables
+            ],
+            columnDefs: [{
+                'targets': -1, // seluruh kolom dapat diorder, kecuali kolom terakhir(aksi)
+                'orderable': false,
+            }],
+        }).buttons().container().appendTo(
+            '#tabel-data_wrapper .col-md-6:eq(0)'); //memunculkan buttons pada id tabel-data_wrapper
+    });
+
+    $(document).ready(function() {
+        $('#tabel-data thead th:last').addClass(
+            'no-export'); //class no export, agar kolom terakhir(aksi) tidak di export
+    });
+</script>
+
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace( 'content' );
@@ -135,3 +198,4 @@
 </body>
 
 </html>
+
