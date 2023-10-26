@@ -26,7 +26,7 @@ class PostController extends Controller
     public function index(): View
     {
         //get posts
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(3);
 
         //render view with posts
         return view('admin.admin', compact('posts'));
@@ -69,7 +69,7 @@ class PostController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('dashboard_admin.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
 
     /**
@@ -148,7 +148,7 @@ class PostController extends Controller
         }
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('dashboard_admin.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -169,6 +169,6 @@ class PostController extends Controller
         $post->delete();
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('dashboard_admin.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

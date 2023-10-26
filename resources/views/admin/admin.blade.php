@@ -43,9 +43,9 @@ Dashboard Admin
                     <td>{{ $post->title }}</td>
                     <td>{!! $post->content !!}</td>
                     <td class="text-center">
-                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboard_admin.destroy', $post->id) }}" method="POST">
+                            <a href="{{ route('dashboard_admin.show', $post->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                            <a href="{{ route('dashboard_admin.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -60,6 +60,18 @@ Dashboard Admin
             </tbody>
           </table>
           {{ $posts->links() }}
+
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+              <li class="page-item"><a class="page-link" href="#"></a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+
                 </div>
             </div>
         </div>

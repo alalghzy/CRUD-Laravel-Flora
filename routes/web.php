@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('/admina', [HomeController::class, 'index'])->name('home')->middleware('roleAkses:admin');
 Route::middleware(['auth'])->group(function(){
 
-    Route::resource('/posts',PostController::class)->middleware('roleAkses:admin');
+    Route::resource('/dashboard_admin',PostController::class)->middleware('roleAkses:admin');
     Route::get('/user', [HomeController::class, 'index_user'])->name('user')->middleware('roleAkses:user');
 });
 
