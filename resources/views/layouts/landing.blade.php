@@ -29,7 +29,7 @@
     <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
     @auth
         @if (auth()->user()->role == 'admin')
-            <a href="/admin" class="btn rounded menu-admin"><i class="fa-solid fa-house"></i></a>
+            <a href="{{ route('admin.index') }}" class="btn rounded menu-admin"><i class="fa-solid fa-house"></i></a>
         @endif
     @endauth
     <nav id="sidebar-wrapper">

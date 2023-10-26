@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +20,14 @@ Route::get('/', function () {
     return view('pages.user');
 });
 
-Auth::routes();
+//route resource
 
+
+Auth::routes();
+Route::get('/admina', [HomeController::class, 'index'])->name('home')->middleware('roleAkses:admin');
 Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', [HomeController::class, 'index'])->name('home')->middleware('roleAkses:admin');
+
+    Route::resource('/posts',PostController::class)->middleware('roleAkses:admin');
     Route::get('/user', [HomeController::class, 'index_user'])->name('user')->middleware('roleAkses:user');
 });
 
