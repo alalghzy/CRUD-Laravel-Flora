@@ -3,37 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(Request $request)
     {
-        session()->flash('success', 'Kamu berhasil login ke Laman Admin!');
-        return view('admin.admin')->with('success', 'Kamu berhasil login ke Laman Admin!');
-    }
+        // Mengambil ID pengguna yang sedang masuk
+        $userId = Auth::id();
 
-    public function index_user()
-    {
-        session()->flash('success', 'Kamu berhasil login ke Laman User!');
-        return view('pages.user')->with('success', 'Kamu berhasil login ke Laman User!');;
+        // Mendapatkan nilai parameter jumlah gambar yang ingin ditampilkan dari query string
+        $gambarCount = $request->input('gambar_count', session('gambar_count', 4)); // Gunakan nilai dari sesi atau nilai default
 
+        // Simpan nilai gambar_count ke dalam sesi
+        session(['gambar_count' => $gambarCount]);
+
+        // Mengambil gambar sesuai dengan jumlah yang diminta
+        $gambar = Post::latest()->paginate($gambarCount);
+
+        return view('pages.user', compact('gambar', 'gambarCount'))->with('success');
     }
 }
