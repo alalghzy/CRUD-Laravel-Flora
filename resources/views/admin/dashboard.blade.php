@@ -72,6 +72,12 @@
             "pageLength": 5
         });
     </script>
+    <script type="text/javascript">
+        $('#userTable').DataTable({
+            "lengthMenu": [5, 10, 20, 30, 50],
+            "pageLength": 5
+        });
+    </script>
 
 
     {{-- Pure Counter --}}
