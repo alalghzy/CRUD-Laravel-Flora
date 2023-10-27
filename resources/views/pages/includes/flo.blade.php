@@ -4,14 +4,6 @@
         <div class="content-section-heading text-center">
             <h3 class="text-secondary mb-0" data-aos="flip-up" data-aos-offset="350" data-aos-duration="700">Flo!</h3>
             <h2 class="mb-5" data-aos="flip-down" data-aos-offset="400" data-aos-duration="500">❤️ Flo ❤️</h2>
-            <form method="get" class="mb-5">
-                <select name="gambar_count" onchange="this.form.submit()" class=" form-select-sm" aria-label="Small select example">
-                    <option value="4" {{ $gambarCount == 4 ? 'selected' : '' }}>4&emsp;</option>
-                    <option value="6" {{ $gambarCount == 6 ? 'selected' : '' }}>6&emsp;</option>
-                    <option value="8" {{ $gambarCount == 8 ? 'selected' : '' }}>8&emsp;</option>
-                    <option value="10" {{ $gambarCount == 10 ? 'selected' : '' }}>10&emsp;</option>
-                </select>
-            </form>
         </div>
         <div class="row gx-0">
             @if ($gambar->count())
@@ -54,6 +46,14 @@
                     </a>
                 </div>
             @endif
+            <form method="get" class="mt-3 content-section-heading text-center"><hr>
+                <select name="gambar_count" onchange="this.form.submit()" class=" form-select-sm" aria-label="Small select example">
+                    <option value="4" {{ $gambarCount == 4 ? 'selected' : '' }}>4&emsp;</option>
+                    <option value="6" {{ $gambarCount == 6 ? 'selected' : '' }}>6&emsp;</option>
+                    <option value="8" {{ $gambarCount == 8 ? 'selected' : '' }}>8&emsp;</option>
+                    <option value="10" {{ $gambarCount == 10 ? 'selected' : '' }}>10&emsp;</option>
+                </select>
+            </form>
         </div>
     </div>
 </section>
