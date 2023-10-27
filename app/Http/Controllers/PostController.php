@@ -29,7 +29,7 @@ class PostController extends Controller
         $posts = Post::latest()->paginate(10);
 
         //render view with posts
-        return view('admin.admin', compact('posts'));
+        return view('admin.crud', compact('posts'));
     }
 
     /**
@@ -39,7 +39,8 @@ class PostController extends Controller
      */
     public function create(): View
     {
-        return view('posts.create');
+        session()->flash('success', 'Kamu berhasil login ke Laman Admin!');
+        return view('admin.dashboard')->with('success');
     }
 
     /**
@@ -69,7 +70,7 @@ class PostController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('dashboard_admin.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('crud.index')->with(['data' => 'Data Berhasil Ditambahkan!']);
     }
 
     /**
@@ -99,7 +100,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         //render view with post
-        return view('posts.edi', compact('post'));
+        return view('crud.edit', compact('post'));
     }
 
     /**
@@ -114,8 +115,8 @@ class PostController extends Controller
         //validate form
         $this->validate($request, [
             'image'     => 'image|mimes:jpeg,jpg,png|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+            'title'     => '',
+            'content'   => 'min:3'
         ]);
 
         //get post by ID
@@ -148,7 +149,7 @@ class PostController extends Controller
         }
 
         //redirect to index
-        return redirect()->route('dashboard_admin.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('crud.index')->with(['data' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -169,6 +170,6 @@ class PostController extends Controller
         $post->delete();
 
         //redirect to index
-        return redirect()->route('dashboard_admin.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('crud.index')->with(['data' => 'Data Berhasil Dihapus!']);
     }
 }

@@ -3,37 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(Request $request)
     {
-        session()->flash('success', 'Kamu berhasil login ke Laman Admin!');
-        return view('admin.admin')->with('success', 'Kamu berhasil login ke Laman Admin!');
-    }
+        // Mengambil ID pengguna yang sedang masuk
+        $userId = Auth::id();
 
-    public function index_user()
-    {
-        session()->flash('success', 'Kamu berhasil login ke Laman User!');
-        return view('pages.user')->with('success', 'Kamu berhasil login ke Laman User!');;
-
+        // Mengambil semua gambar berdasarkan ID pengguna (user ID)
+        $gambar = Post::latest()->paginate(4);
+        return view('pages.user', compact('gambar'))->with('success');
     }
 }

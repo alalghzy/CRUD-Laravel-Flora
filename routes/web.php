@@ -16,19 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.user');
-});
-
-//route resource
-
+Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
-Route::get('/admina', [HomeController::class, 'index'])->name('home')->middleware('roleAkses:admin');
 Route::middleware(['auth'])->group(function(){
-
-    Route::resource('/dashboard_admin',PostController::class)->middleware('roleAkses:admin');
-    Route::get('/user', [HomeController::class, 'index_user'])->name('user')->middleware('roleAkses:user');
+    Route::resource('/crud',PostController::class)->middleware('roleAkses:admin');
+    Route::get('/dashboard_admin', [PostController::class, 'create'])->name('home')->middleware('roleAkses:admin');
 });
 
 
