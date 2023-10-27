@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 //import Model "Post
 use App\Models\Post;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 //return type View
@@ -39,8 +39,11 @@ class PostController extends Controller
      */
     public function create(): View
     {
+        $users = User::count();;
+        $posts = Post::count();
+        $datas = Post::latest()->paginate(2);
         session()->flash('success', 'Kamu berhasil login ke Laman Admin!');
-        return view('admin.dashboard')->with('success');
+        return view('admin.dashboard', compact(['posts','users', 'datas']))->with('success');
     }
 
     /**
