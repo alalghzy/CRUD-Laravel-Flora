@@ -7,22 +7,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-                <div id="post-list">
-                    @include('admin.includes.post-list')
-                </div>
-
-                <nav id="pagination">
-                    <ul class="pagination">
-                        <li class="page-item" data-page="{{ $datas->previousPageUrl() ? $datas->currentPage() - 1 : null }}">
-                            <a class="page-link" href="javascript:void(0)">Previous</a>
-                        </li>
-                        <li class="page-item" data-page="{{ $datas->nextPageUrl() ? $datas->currentPage() + 1 : null }}">
-                            <a class="page-link" href="javascript:void(0)">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>GAMBAR</th>
+                            <th>NAMA</th>
+                            <th>DESKRIPSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($datas->count())
+                            @foreach ($datas as $key => $post)
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="{{ asset('/storage/posts/' . $post->image) }}" class="shadow-sm rounded"
+                                            style="width: 150px">
+                                    </td>
+                                    <td>{{ $post->title }}</td>
+                                    <td>{!! $post->content !!}</td>
+                            @endforeach
+                        @else
+                            <div class="alert alert-danger">
+                                Data belum tersedia !
+                            </div>
+                        @endif
+                    </tbody>
+                </table>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Kembali</button>
+              </div>
         </div>
     </div>
 </div>

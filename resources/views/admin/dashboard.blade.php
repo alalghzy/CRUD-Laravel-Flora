@@ -61,22 +61,15 @@
 
 @push('script')
 
-    {{-- Ajax Pagination --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#pagination li').on('click', function() {
-                let page = $(this).data('page');
-                if (page !== null) {
-                    $.ajax({
-                        url: `/load-posts?page=${page}`,
-                        type: 'GET',
-                        success: function(data) {
-                            $('#post-list').html(data);
-                        }
-                    });
-                }
-            });
+    <!-- Page specific javascripts-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css">
+    <!-- Data table plugin-->
+    <script type="text/javascript" src=" {{ asset('admin/js/plugins/jquery.dataTables.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $('#sampleTable').DataTable({
+            "lengthMenu": [5, 10, 20, 30, 50],
+            "pageLength": 5
         });
     </script>
 

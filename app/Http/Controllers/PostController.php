@@ -41,9 +41,10 @@ class PostController extends Controller
     {
         $users = User::count();;
         $posts = Post::count();
-        $datas = Post::latest()->paginate(2);
+        $datas = Post::latest()->paginate(10);
+        $userd = User::latest()->paginate(10);
         session()->flash('success', 'Kamu berhasil login ke Laman Admin!');
-        return view('admin.dashboard', compact(['posts','users', 'datas']))->with('success');
+        return view('admin.dashboard', compact(['posts','users', 'datas', 'userd']))->with('success');
     }
 
     /**
