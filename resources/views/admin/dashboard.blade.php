@@ -21,7 +21,7 @@
                 <div class="info">
                     <h4>User Terdaftar</h4>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#modalUser"
-                        class="btn btn-warning font-extrabold mb-0 purecounter" data-purecounter-start="0"
+                        class="btn btn-warning font-extrabold mb-2 purecounter" data-purecounter-start="0"
                         data-purecounter-end="{{ $users }}" data-purecounter-duration="1"
                         style="color: rgb(20, 0, 73)"></button>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="info">
                     <h4>Data Terinput</h4>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#modalData"
-                        class="btn btn-warning font-extrabold mb-0 purecounter" data-purecounter-start="0"
+                        class="btn btn-warning font-extrabold mb-2 purecounter" data-purecounter-start="0"
                         data-purecounter-end="{{ $posts }}" data-purecounter-duration="1"
                         style="color: rgb(20, 0, 73)"></button>
                 </div>
