@@ -16,8 +16,15 @@ class HomeController extends Controller
         // Mengambil ID pengguna yang sedang masuk
         $userId = Auth::id();
 
-        // Mengambil semua gambar berdasarkan ID pengguna (user ID)
-        $gambar = Post::latest()->paginate(4);
-        return view('pages.user', compact('gambar'))->with('success');
+        // Mendapatkan nilai parameter jumlah gambar yang ingin ditampilkan dari query string
+        $gambarCount = $request->input('gambar_count', session('gambar_count', 4)); // Gunakan nilai dari sesi atau nilai default
+
+        // Simpan nilai gambar_count ke dalam sesi
+        session(['gambar_count' => $gambarCount]);
+
+        // Mengambil gambar sesuai dengan jumlah yang diminta
+        $gambar = Post::latest()->paginate($gambarCount);
+
+        return view('pages.user', compact('gambar', 'gambarCount'))->with('success');
     }
 }
