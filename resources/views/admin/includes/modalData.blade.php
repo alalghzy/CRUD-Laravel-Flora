@@ -11,8 +11,8 @@
                     <thead>
                         <tr>
                             <th>GAMBAR</th>
-                            <th>NAMA</th>
-                            <th>DESKRIPSI</th>
+                            <th>JUDUL</th>
+                            <th>KONTEN</th>
                         </tr>
                     </thead>
                     <tbody>
