@@ -15,7 +15,7 @@
                     <label class="font-weight-bold mb-2">GAMBAR</label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
 
-                    <!-- error message untuk title -->
+                    <!-- error message untuk image -->
                     @error('image')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}

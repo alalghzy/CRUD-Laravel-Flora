@@ -10,9 +10,9 @@
             <table class="table table-hover table-bordered" id="userTable">
                 <thead>
                     <tr>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Role</th>
+                        <th>NAMA</th>
+                        <th>EMAIL</th>
+                        <th>ROLE</th>
                     </tr>
                 </thead>
                 <tbody>

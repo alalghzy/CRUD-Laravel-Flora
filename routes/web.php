@@ -20,8 +20,9 @@ Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){
-    Route::resource('/crud',PostController::class)->middleware('roleAkses:admin');
-    Route::get('/dashboard_admin', [PostController::class, 'create'])->name('home')->middleware('roleAkses:admin');
+    Route::resource('/crud',PostController::class)->middleware('roleAkses:admin')
+    ->except('show','create');
+    Route::get('/dashboard_admin', [PostController::class, 'dashboard'])->name('home')->middleware('roleAkses:admin');
 });
 
 

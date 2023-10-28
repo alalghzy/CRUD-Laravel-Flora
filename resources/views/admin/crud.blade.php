@@ -27,8 +27,8 @@
                             <thead>
                                 <tr>
                                     <th>GAMBAR</th>
-                                    <th>NAMA</th>
-                                    <th>DESKRIPSI</th>
+                                    <th>JUDUL</th>
+                                    <th>KONTEN</th>
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
@@ -88,10 +88,21 @@
         <script>
             Swal.fire({
                 title: 'Sukses!',
-                text: '{{ session('success') }}',
+                text: '{{ session('data') }}',
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1000
+            });
+        </script>
+    @endif
+
+    @if (session('failed'))
+        <script>
+            Swal.fire({
+                title: 'Gagal!',
+                text: '{{ session('failed') }}',
+                icon: 'error',
+                showConfirmButton: true,
             });
         </script>
     @endif

@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 
 //import Facade "Storage"
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -37,7 +38,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function create(): View
+    public function dashboard(): View
     {
         $users = User::count();;
         $posts = Post::count();
@@ -56,11 +57,23 @@ class PostController extends Controller
     public function store(Request $request): RedirectResponse
     {
         //validate form
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'title'     => 'required|',
             'content'   => 'required|min:3'
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->with('failed', 'Data gagal ditambahkan!')
+                ->withInput()
+                ->withErrors($validator);
+        }
+        // $this->validate($request, [
+        //     'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        //     'title'     => 'required|',
+        //     'content'   => 'required|min:3'
+        // ]);
 
         //upload image
         $image = $request->file('image');
@@ -117,11 +130,17 @@ class PostController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         //validate form
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'image'     => 'image|mimes:jpeg,jpg,png|max:2048',
-            'title'     => '',
-            'content'   => 'min:3'
+            'title'     => 'required|min:1',
+            'content'   => 'required|min:3'
         ]);
+        if ($validator->fails()) {
+            return back()
+                ->with('failed', 'Data gagal ditambahkan!')
+                ->withInput()
+                ->withErrors($validator);
+        }
 
         //get post by ID
         $post = Post::findOrFail($id);

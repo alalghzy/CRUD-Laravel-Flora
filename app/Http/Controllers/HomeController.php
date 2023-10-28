@@ -13,11 +13,10 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // Mengambil ID pengguna yang sedang masuk
         $userId = Auth::id();
 
         // Mendapatkan nilai parameter jumlah gambar yang ingin ditampilkan dari query string
-        $gambarCount = $request->input('gambar_count', session('gambar_count', 4)); // Gunakan nilai dari sesi atau nilai default
+        $gambarCount = $request->input('gambar_count', session('gambar_count', 4));
 
         // Simpan nilai gambar_count ke dalam sesi
         session(['gambar_count' => $gambarCount]);
